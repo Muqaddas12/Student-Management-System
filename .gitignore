@@ -1,0 +1,47 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# Logs
+logs/
+*.log
+debug.log
+error.log 
+
+# Environment variables
+.env
+
+# Database files
+*.sql
+*.sqlite
+*.sqlite3
+db_backups/
+
+# Compiled files
+dist/
+build/
+public/uploads/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.iml
+
+# MacOS & Linux system files
+.DS_Store
+*.swp
+*.swo
+
+# Temporary files 
+tmp/
+temp/
+*.bak
+
+# EJS Cache files
+views/*.ejs~
+
+# Ignore any generated PDFs or documents
+*.pdf
+*.docx

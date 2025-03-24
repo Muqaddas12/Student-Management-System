@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="/stylesheets/registrationForm.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Student Registration Form</h2>
+        <form action="/api/user/registration" method="POST">
+            
+            <!-- Personal Details -->
+            <fieldset>
+                <legend>Personal Details</legend>
+                <label>Category *</label>
+                <select name="category" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="General">General</option>
+                    <option value="OBC">OBC</option>
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                </select>
+
+                <label>Religion *</label>
+                <select name="religion" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Muslim">Muslim</option>
+                    <option value="Christian">Christian</option>
+                    <option value="Sikh">Sikh</option>
+                </select>
+
+                <label>State *</label>
+                <select name="state" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="UP">Uttar Pradesh</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                </select>
+
+                <label>District *</label>
+                <select name="district" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Mumbai">Mumbai</option>
+                </select>
+            </fieldset>
+
+            <!-- Academic Details -->
+            <fieldset>
+                <legend>Academic Details</legend>
+                <label>Department *</label>
+                <input type="text" name="department" required>
+
+                <label>Programme *</label>
+                <select name="programme" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="MCA">MCA</option>
+                    <option value="BCA">BCA</option>
+                    <option value="B.Tech">B.Tech</option>
+                </select>
+
+                <label>Batch Year *</label>
+                <input type="number" name="batch_year" required>
+
+                <label>Admission Type *</label>
+                <select name="admission_type" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Lateral Entry">Lateral Entry</option>
+                </select>
+
+                <label>Admission Quota *</label>
+                <select name="admission_quota" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Merit">Merit</option>
+                    <option value="Management">Management</option>
+                </select>
+
+                <label>Hostel Required *</label>
+                <select name="hostel_required" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label>Transportation Required *</label>
+                <select name="transportation_required" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </fieldset>
+
+            <!-- Identification Details -->
+            <fieldset>
+                <legend>Identification Details</legend>
+                <label>Admission No *</label>
+                <input type="text" name="admission_no" required>
+
+                <label>Enrollment No</label>
+                <input type="text" name="enrollment_no">
+
+                <label>Roll No</label>
+                <input type="text" name="roll_no">
+            </fieldset>
+
+            <!-- Contact Details -->
+            <fieldset>
+                <legend>Contact Details</legend>
+                <label>Title *</label>
+                <select name="title" required>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Ms.">Ms.</option>
+                </select>
+
+                <label>First Name *</label>
+                <input type="text" name="first_name" required>
+
+                <label>Middle Name</label>
+                <input type="text" name="middle_name">
+
+                <label>Last Name *</label>
+                <input type="text" name="last_name" required>
+
+                <label>Email Address *</label>
+                <input type="email" name="email" required>
+
+                <label>Mobile Number *</label>
+                <input type="text" name="mobile" required>
+
+                <label>Date of Birth *</label>
+                <input type="date" name="dob" required>
+
+                <label>Aadhar No *</label>
+                <input type="text" name="aadhar" required>
+
+                <label>Digilocker ID *</label>
+                <input type="text" name="digilocker_id">
+            </fieldset>
+
+            <!-- Address -->
+            <fieldset>
+                <legend>Address</legend>
+                <label>Address 1 *</label>
+                <input type="text" name="address1" required>
+
+                <label>Pin Code *</label>
+                <input type="text" name="pin_code" required>
+            </fieldset>
+
+            <!-- Upload Photo -->
+            <fieldset>
+                <legend>Photo Upload</legend>
+                <label>Upload Your Photo *</label>
+                <input type="file" name="photo" accept="image/*" required>
+            </fieldset>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>
