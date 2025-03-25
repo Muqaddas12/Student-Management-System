@@ -22,7 +22,7 @@ db_backups/
 # Compiled files
 dist/
 build/
-public/uploads/
+
 
 # IDE and Editor files
 .vscode/
