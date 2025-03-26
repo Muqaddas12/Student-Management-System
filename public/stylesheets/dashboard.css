@@ -69,6 +69,10 @@
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
+.action-route{
+    text-decoration: none;
+    color: white;
+}
 
 .action-btn:hover {
     background: #c0392b;

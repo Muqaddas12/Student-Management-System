@@ -26,7 +26,8 @@ router.post('/registration', (req, res) => {
     const { first_name, last_name, email, dob, street_address, city, state, country, zip, course, comments } = req.body;
     
     console.log(`New student registered: ${first_name} ${last_name} - Country: ${country}`);
-   res.redirect('/api/user/dashboard')
+    console.log(first_name, last_name, email, dob, street_address, city, state, country, zip, course, comments)
+//    res.redirect('/api/user/dashboard')
 });
 
 

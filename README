@@ -1,6 +1,3 @@
-Database Details!!!!!!!!!!  
-
-*****************Registration Table************
 CREATE TABLE student_details (
     id INT PRIMARY KEY AUTO_INCREMENT,
     
@@ -15,20 +12,20 @@ CREATE TABLE student_details (
     programme VARCHAR(100),
     batch_year YEAR,
     admission_type VARCHAR(50),
-    admission_quota VARCHAR(50),
+   
     
     -- Facilities
     hostel_required ENUM('Yes', 'No'),
     transportation_required ENUM('Yes', 'No'),
     
     -- Identification
-    photo VARCHAR(255),
+    photo longblob,
     admission_no VARCHAR(50) UNIQUE,
     enrollment_no VARCHAR(50) UNIQUE,
     roll_no VARCHAR(50) UNIQUE,
     
     -- Student Information
-    title VARCHAR(10),
+    gender VARCHAR(10),
     first_name VARCHAR(50),
     middle_name VARCHAR(50),
     last_name VARCHAR(50),
@@ -36,7 +33,6 @@ CREATE TABLE student_details (
     mobile_number VARCHAR(15) UNIQUE,
     date_of_birth DATE,
     aadhar_no VARCHAR(20) UNIQUE,
-    digilocker_id VARCHAR(50) UNIQUE,
     address_1 TEXT,
     pin_code VARCHAR(10),
     
@@ -48,7 +44,7 @@ CREATE TABLE student_details (
     
     -- Education Details
     twelfth_stream VARCHAR(50),
-    diploma VARCHAR(50),
+ 
     
     -- 10th Details
     tenth_marks_grade VARCHAR(10),
@@ -60,18 +56,10 @@ CREATE TABLE student_details (
     twelfth_passing_year YEAR,
     twelfth_board VARCHAR(100),
     
-    -- Other Education Details
-    marks_grade VARCHAR(10),
-    passing_year YEAR,
-    board VARCHAR(100),
-    
     -- Graduation Details
     graduation_marks_grade VARCHAR(10),
     graduation_passing_year YEAR,
     graduation_university VARCHAR(100),
     
-    -- Post Graduation Details
-    post_graduation_marks_grade VARCHAR(10),
-    post_graduation_passing_year YEAR,
-    post_graduation_university VARCHAR(100)
+    registration_status bool
 );
