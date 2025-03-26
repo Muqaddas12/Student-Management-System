@@ -1,5 +1,5 @@
 import express from 'express'
-
+import EmailOtpRegistration from '../../controller/EmailOtpRegistration.js';
 import connectDB from '../../Database.js'
 
 const router = express.Router();
@@ -39,5 +39,8 @@ router.post('/registration', (req, res) => {
 router.get('/fillRegistrationForm',(req,res)=>{
     res.render('fillRegistrationForm',{title:'fillRegistrationForm'})
 })
+
+router.post('/sendOtp',EmailOtpRegistration)
+
 
 export default router

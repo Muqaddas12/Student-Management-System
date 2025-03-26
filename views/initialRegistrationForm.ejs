@@ -6,73 +6,11 @@
     <title>Student Registration</title>
     <link rel="stylesheet" href="/stylesheets/registration.css">
     <link rel="stylesheet" href="/stylesheets/header.css">
+    <script src="/javascript/GetOtp.js"></script>
 </head>
 <body>
     <%- include('partials/header')  %>
-    <div class="container">
-        <div class="registrationlogo">
-            <img src="/images/logo.png" alt="College Logo">
-        </div>
-        <h2>College Application Form</h2>
-
-        <form action="/api/user/registration" method="POST">
-            <!-- Student Information -->
-            <fieldset>
-                <legend>Student Information</legend>
-                <div class="input-group">
-                    <input type="text" name="first_name" placeholder="First Name*" required>
-                    <input type="text" name="middle_name" placeholder="Middle Name">
-                    <input type="text" name="last_name" placeholder="Last Name*" required>
-                </div>
-                <div class="input-group">
-                    <input type="date" name="dob" required>
-                    <input type="email" name="email" placeholder="Email*" required>
-                    <input type="phone" name="phone" placeholder="Phone*" required>
-                </div>
-            </fieldset>
-
-            <!-- Address -->
-            <fieldset>
-                <legend>Address</legend>
-                <input type="text" name="street_address" placeholder="Street Address" required>
-                <div class="input-group">
-                    <input type="text" name="city" placeholder="City" required>
-                    <input type="text" name="state" placeholder="State" required>
-                </div>
-                <div class="input-group">
-                    <select name="country" required>
-                        <option value="" disabled selected>Select Country</option>
-                        <option value="India">India</option>
-                        <option value="USA">USA</option>
-                        <option value="UK">UK</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Australia">Australia</option>
-                        <option value="Germany">Germany</option>
-                        <option value="France">France</option>
-                        <option value="Japan">Japan</option>
-                        <option value="China">China</option>
-                    </select>
-                    <input type="text" name="zip" placeholder="ZIP Code" required>
-                </div>
-            </fieldset>
-
-            <!-- Courses -->
-            <fieldset>
-                <legend>Courses</legend>
-                <div class="input-group">
-                    <select name="course" required>
-                        <option value="MCA">MCA</option>
-                        <option value="BCA">BCA</option>
-                        <option value="B.Tech">B.Tech</option>
-                    </select>
-                </div>
-            </fieldset>
-
-           
-
-            <!-- Submit Button -->
-            <button type="submit" class="submit-btn">SEND OTP</button>
-        </form>
-    </div>
+    <%- include('partials/initialRegistrationForm')  %>
+ 
 </body>
 </html>
