@@ -1,6 +1,7 @@
 import express from 'express'
 import EmailOtpRegistration from '../../controller/EmailOtpRegistration.js';
 import connectDB from '../../Database.js'
+import initialRegistration from '../../controller/initialRegistrationForm.js'
 
 const router = express.Router();
 //connect to mysql 
@@ -17,23 +18,8 @@ router.get('/mentorDetails',(req,res)=>{
 })
 
 //initial registration form route
-router.get('/registration',(req,res)=>{
-res.render('initialRegistrationForm',{title:'initialRegistrationForm'})
-})
-router.post('/registration', (req, res) => {
-    const { first_name, last_name, email, dob, street_address, city, state, country, zip, course,  } = req.body;
-    const todayDate=new Date().getFullYear()
-   const studentBirthYear=parseInt(dob.split('-')[0],10)
-   if(todayDate===studentBirthYear){
-    res.redirect('/api/user/registration?error=student_age_should_be_gretar_then_18');
-
-   }
- 
-    
-    console.log(`New student registered: ${first_name} ${last_name} - Country: ${country}`);
-    console.log(first_name, last_name, email, dob, street_address, city, state, country, zip, course, )
-//    res.redirect('/api/user/dashboard')
-});
+router.get('/initialRegistrationForm',initialRegistration.initialRegistrationFormGet)
+router.post('/initialRegistrationForm',initialRegistration.initialRegistrationFormPost);
 
 //final registration form route
 router.get('/fillRegistrationForm',(req,res)=>{

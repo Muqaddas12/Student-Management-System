@@ -1,9 +1,30 @@
-import sendEmail from "../src/services/EmailOtpRegistration.js"
+import sendEmail from "../src/services/EmailOtpRegistration.js";
+import otpGenerator from "otp-generator";
+import { encrypt, decrypt } from "node-encryption";
 
-const EmailOtpRegistration=(req,res)=>{
-    const {email}=req.body
-    console.log(email)
+const encryptionKey = process.env.encryptionKey; 
+
+const EmailOtpRegistration = (req, res) => {
+    const { email } = req.body;
+
+    // Generate a 6-digit numeric OTP
+    const otp = otpGenerator.generate(6, {
+        upperCaseAlphabets: false,
+        specialChars: false,
+        lowerCaseAlphabets: false,
+    });
+
+    console.log("Generated OTP:", otp);
+
+    // Send OTP to email
+    sendEmail(email, otp);
+
+    // Encrypt OTP before storing it in a cookie
+    const encryptedOtp = encrypt(otp, encryptionKey);
+
+    res.cookie("id", encryptedOtp, { httpOnly: true, secure: true });
+
     res.json({ message: "OTP sent successfully!" });
-}
+};
 
-export default EmailOtpRegistration
+export default EmailOtpRegistration;

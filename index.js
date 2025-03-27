@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import userRoutesR from './router/userRoutes/studentsRoutes.js';
+import cookieParser from 'cookie-parser';
 
 const sms = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,7 @@ const __dirname = path.dirname(__filename);
 // Setting up middlewares
 sms.use(express.json());
 sms.use(express.urlencoded({ extended: true }));
+sms.use(cookieParser())
 
 // Set up views
 sms.set('view engine', 'ejs');

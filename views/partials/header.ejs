@@ -10,11 +10,14 @@
         <div class="subtitle">Student Management System</div>
     </div>
 
-    <!-- Icons Section -->
-    <div class="icons">
-        <i class="bell">🔔</i> <!-- Bell Icon -->
-        <div class="profile">
-            <img src="/images/profile.jpg" alt="Profile">
+    <% if (locals.isloggedIn) { %>
+        <!-- Icons Section -->
+        <div class="icons">
+            <i class="bell">🔔</i> <!-- Bell Icon -->
+            <div class="profile">
+                <img src="/images/profile.jpg" alt="Profile">
+            </div>
         </div>
-    </div>
+     <% } %>
+     
 </div>

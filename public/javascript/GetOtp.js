@@ -52,6 +52,7 @@ function sendOtp(e){
         // Create an input box
         const inputBox = document.createElement('input');
         inputBox.type = 'text';
+        inputBox.required=true;
         inputBox.name = 'userInput';
         inputBox.placeholder = 'Enter text';
         inputBox.style.marginRight = '10px';
