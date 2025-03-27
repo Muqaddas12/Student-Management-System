@@ -1,8 +1,11 @@
 import express from 'express'
 import EmailOtpRegistration from '../../controller/EmailOtpRegistration.js';
 import connectDB from '../../Database.js'
-import initialRegistration from '../../controller/initialRegistrationForm.js'
-
+import initialRegistration from '../../controller/enrollment.js'
+import verifyOtp from '../../src/services/VerifyOtp.js';
+import multer from 'multer';
+const storage=multer.memoryStorage()
+const upload=multer({storage:storage})
 const router = express.Router();
 //connect to mysql 
 connectDB()
@@ -18,12 +21,12 @@ router.get('/mentorDetails',(req,res)=>{
 })
 
 //initial registration form route
-router.get('/initialRegistrationForm',initialRegistration.initialRegistrationFormGet)
-router.post('/initialRegistrationForm',initialRegistration.initialRegistrationFormPost);
+router.get('/enrollment',initialRegistration.enrollmentGet)
+router.post('/enrollment',verifyOtp,upload.single('profilePicture'),initialRegistration.enrollmentPost);
 
 //final registration form route
-router.get('/fillRegistrationForm',(req,res)=>{
-    res.render('fillRegistrationForm',{title:'fillRegistrationForm'})
+router.get('/addmissionForm',(req,res)=>{
+    res.render('addmissionForm',{title:'addmissionForm'})
 })
 
 router.post('/sendOtp',EmailOtpRegistration)

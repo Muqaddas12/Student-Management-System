@@ -4,7 +4,7 @@
     </div>
     <h2>College Application Form</h2>
 
-    <form id="formContainer" action="/api/user/initialRegistrationForm" method="POST">
+    <form id="formContainer" action="/api/user/enrollment" method="POST" enctype="multipart/form-data">
         <!-- Student Information -->
         <fieldset>
             <legend>Student Information</legend>
@@ -14,7 +14,7 @@
                 <input type="text" name="last_name" placeholder="Last Name*" required>
             </div>
             <div class="input-group">
-                <input type="date" name="dob" required>
+                <input type="date" name="dob" value="2000-02-10" required>
                 <input type="email" name="email" placeholder="Email*" id="email" required>
                 <input type="phone" name="phone" placeholder="Phone*" required>
             </div>
@@ -261,7 +261,14 @@
     
         </fieldset>
 
+       <fieldset>
+        <legend>Upload Profile Photo</legend>
+        <div class="form-group">
+            <input name="profilePicture" type="file" placeholder="Upload your Photo" required>
+        </div>
        
+        
+       </fieldset>
 
         <!-- Submit Button -->
         <button id="otpSendButton" type="submit" class="submit-btn">SEND OTP</button>

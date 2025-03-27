@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
+    "data-crypto": "^1.4.4",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",

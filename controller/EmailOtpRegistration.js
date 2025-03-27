@@ -1,8 +1,9 @@
 import sendEmail from "../src/services/EmailOtpRegistration.js";
 import otpGenerator from "otp-generator";
-import { encrypt, decrypt } from "node-encryption";
+import jwt from 'jsonwebtoken'
+const SECRET_KEY = process.env.JWT_SECRET
 
-const encryptionKey = process.env.encryptionKey; 
+
 
 const EmailOtpRegistration = (req, res) => {
     const { email } = req.body;
@@ -20,11 +21,17 @@ const EmailOtpRegistration = (req, res) => {
     sendEmail(email, otp);
 
     // Encrypt OTP before storing it in a cookie
-    const encryptedOtp = encrypt(otp, encryptionKey);
+  const payload={otp:otp}
+  const encryptedOtp=jwt.sign(otp,SECRET_KEY)
+    console.log(encryptedOtp)
 
     res.cookie("id", encryptedOtp, { httpOnly: true, secure: true });
 
     res.json({ message: "OTP sent successfully!" });
 };
+
+
+
+
 
 export default EmailOtpRegistration;
