@@ -1,0 +1,350 @@
+<div class="container">
+
+
+    <div class="nav-tabs">
+        <a id="student-details" style="cursor: pointer;" class="active">Student Details</a>
+        <a id="upload-documents" style="cursor: pointer;" >Uploaded Documents</a>
+        <a id="attendance" style="cursor: pointer;">Attendance</a>
+        
+        <a id="mentor-details" style="cursor: pointer;">Mentor Details</a>
+    </div>
+
+
+
+   <div id="changeable-container">
+    <div class="section-title">Student Details</div>
+    <div class="profile">
+        <img src="data:image/jpeg;base64,<%= user.profileImage.toString('base64') %>" alt="Profile Picture">
+
+        <div class="profile-info">
+            <h2><%-locals.user.firstName %> <%-locals.user.lastName %></h2>
+        </div>
+    </div>
+
+    <div class="details">
+        <table>
+            <tr>
+                <td>Registration ID</td>
+                <td><%-locals.user.admissionNumber %></td>
+            </tr>
+            <tr>
+                <td>Application Number</td>
+                <td><%-locals.user.enrollmentNumber %></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><%=locals.user.email %></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td><%-locals.user.mobileNumber %></td>
+            </tr>
+            <tr>
+                <td>Programme</td>
+                <td><%-locals.user.programme %></td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td><%-locals.user.department %></td>
+            </tr>
+            <tr>
+                <td>Batch Year</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>Academic Status</td>
+                <td><%-locals.user.admissionType %></td>
+            </tr>
+            <tr>
+                <td>Current Year</td>
+                <td>2nd Year</td>
+            </tr>
+            <tr>
+                <td>Current Term</td>
+                <td>4th Semester</td>
+            </tr>
+            <tr>
+                <td>Quota</td>
+                <td>General</td>
+            </tr>
+            <tr>
+                <td>Admission Type</td>
+                <td><%-locals.user.addmissionType %></td>
+            </tr>
+            <tr>
+                <td>Section</td>
+                <td>A</td>
+            </tr>
+        </table>
+    </div>
+   </div>
+</div>
+<script>
+
+
+    const mentorDetails= document.getElementById('mentor-details')
+    mentorDetails.addEventListener('click',()=>{
+     document.getElementById('upload-documents').classList.remove('active')
+     document.getElementById('attendance').classList.remove('active')
+     document.getElementById('student-details').classList.remove('active')
+    document.getElementById('changeable-container').innerHTML=`
+ <div class="mentor-container">
+     <h2 style="text-align: center; color: #E74C3C;">Mentor List</h2>
+ 
+     <div class="mentor-card">
+         <div class="mentor-info">
+             <img src="https://via.placeholder.com/50" class="mentor-img" alt="Mentor">
+             <div>
+                 <div class="mentor-name">Dr. Amit Sharma</div>
+                 <div class="mentor-contact">📞 +91 98765 43210</div>
+             </div>
+         </div>
+         <button class="contact-btn">Contact</button>
+     </div>
+ 
+     <div class="mentor-card">
+         <div class="mentor-info">
+             <img src="https://via.placeholder.com/50" class="mentor-img" alt="Mentor">
+             <div>
+                 <div class="mentor-name">Prof. Neha Gupta</div>
+                 <div class="mentor-contact">📞 +91 87654 32109</div>
+             </div>
+         </div>
+         <button class="contact-btn">Contact</button>
+     </div>
+ 
+     <div class="mentor-card">
+         <div class="mentor-info">
+             <img src="https://via.placeholder.com/50" class="mentor-img" alt="Mentor">
+             <div>
+                 <div class="mentor-name">Dr. Rajesh Kumar</div>
+                 <div class="mentor-contact">📞 +91 76543 21098</div>
+             </div>
+         </div>
+         <button class="contact-btn">Contact</button>
+     </div>
+ 
+ </div>
+    `
+    if (!document.querySelector('link[href="/stylesheets/mentorDetails.css"]')) {
+         const link = document.createElement("link");
+         link.rel = "stylesheet";
+         link.href = "/stylesheets/mentorDetails.css";
+         document.head.appendChild(link);
+     }
+  mentorDetails.classList.add("active");
+    })
+ </script>
+
+
+<script>
+
+    const attendance=document.getElementById('attendance')
+    attendance.addEventListener('click',()=>{
+       
+        document.getElementById('mentor-details').classList.remove('active')
+        document.getElementById('student-details').classList.remove('active')
+        document.getElementById('upload-documents').classList.remove('active')
+      
+        document.getElementById('changeable-container').innerHTML=`
+        <div class="container">
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/100" alt="Profile Picture" class="profile-image">
+        <div class="profile-name">RACHANA</div>
+        <div class="profile-year">2nd Year Student</div>
+    </div>
+
+   
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active">Attendance Records</div>
+     
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+        <div><span class="blue"></span> Present</div>
+        <div><span class="red"></span> Absent</div>
+    </div>
+
+    <!-- Attendance Info -->
+    <div class="attendance-info">0%</div>
+
+    <!-- Term Selection -->
+    <div class="term-dropdown">EVEN TERM 2024 - 25 (GENERAL) ▼</div>
+
+    <!-- Details -->
+    <div class="details">
+        <div>Total Sessions: <b>0</b></div>
+        <div>Present: <b>0</b></div>
+        <div>Absent: <b>0</b></div>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+        <tr>
+            <th>Course Name</th>
+            <th>Attended</th>
+            <th>Scheduled</th>
+            <th>Percentage</th>
+        </tr>
+        <tr>
+            <td>Major Project Presentation & Viva-Voce</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        
+        </tr>
+        <tr>
+            <td>Major Project Presentation & Viva-Voce</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        
+        </tr>
+        <tr>
+            <td>Major Project Presentation & Viva-Voce</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        
+        </tr>
+        <tr>
+            <td>Major Project Presentation & Viva-Voce</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        
+        </tr>
+    </table>
+</div>`
+if (!document.querySelector('link[href="/stylesheets/attendance.css"]')) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "/stylesheets/attendance.css";
+        document.head.appendChild(link);
+    }
+
+attendance.classList.add("active");
+    })
+   
+</script>
+
+
+
+<script>
+    const studentDetails=document.getElementById('student-details')
+    studentDetails.addEventListener('click',()=>{
+        document.getElementById('mentor-details').classList.remove('active')
+        document.getElementById('attendance').classList.remove('active')
+        document.getElementById('upload-documents').classList.remove('active')
+      
+      document.getElementById('changeable-container').innerHTML=`
+      <div class="section-title">Student Details</div>
+    <div class="profile">
+        <img src="data:image/jpeg;base64,<%= user.profileImage.toString('base64') %>" alt="Profile Picture">
+
+        <div class="profile-info">
+            <h2><%-locals.user.firstName %> <%-locals.user.lastName %></h2>
+        </div>
+    </div>
+
+    <div class="details">
+        <table>
+            <tr>
+                <td>Registration ID</td>
+                <td><%-locals.user.admissionNumber %></td>
+            </tr>
+            <tr>
+                <td>Application Number</td>
+                <td><%-locals.user.enrollmentNumber %></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><%=locals.user.email %></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td><%-locals.user.mobileNumber %></td>
+            </tr>
+            <tr>
+                <td>Programme</td>
+                <td><%-locals.user.programme %></td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td><%-locals.user.department %></td>
+            </tr>
+            <tr>
+                <td>Batch Year</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>Academic Status</td>
+                <td><%-locals.user.admissionType %></td>
+            </tr>
+            <tr>
+                <td>Current Year</td>
+                <td>2nd Year</td>
+            </tr>
+            <tr>
+                <td>Current Term</td>
+                <td>4th Semester</td>
+            </tr>
+            <tr>
+                <td>Quota</td>
+                <td>General</td>
+            </tr>
+            <tr>
+                <td>Admission Type</td>
+                <td><%-locals.user.addmissionType %></td>
+            </tr>
+            <tr>
+                <td>Section</td>
+                <td>A</td>
+            </tr>
+        </table>
+    </div>`
+
+
+    if (!document.querySelector('link[href="/stylesheets/studentDetails.css"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "/stylesheets/studentDetails.css";
+      document.head.appendChild(link);
+  }
+
+studentDetails.classList.add("active");
+
+        
+
+    })
+</script>
+
+<script>
+const uploadDocuments=document.getElementById('upload-documents')
+uploadDocuments.addEventListener('click',()=>{
+    document.getElementById('mentor-details').classList.remove('active')
+        document.getElementById('attendance').classList.remove('active')
+        document.getElementById('student-details').classList.remove('active')
+
+        fetch('http://localhost:3000/api/user/getPdf').then(response=>response.json())
+        .then(data=>{
+            const pdfUrl = `data:application/pdf;base64,${data.pdf}`;
+            document.getElementById('pdfViewer').src = pdfUrl;
+        
+           
+        }).catch(error=>{
+            console.log("error fecthing the pdf ",error)
+            alert('service not available ')
+        })
+
+        document.getElementById('changeable-container').innerHTML=`<div class="pdf-container">
+   <iframe id="pdfViewer"  width="100%" height="500px"></iframe>
+</div>
+`
+uploadDocuments.classList.add('active')
+
+
+})
+</script>

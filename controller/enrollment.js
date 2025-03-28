@@ -1,59 +1,74 @@
+
 import connectDB from "../Database.js";
+import jwt from 'jsonwebtoken'
+const SECRET_KEY=process.env.JWT_SECRET
 
 
 
-const enrollmentGet=(req,res)=>{
+const enrollmentGet = (req, res) => {
     res.clearCookie("id", { httpOnly: true, secure: true });
-res.render('enrollment',{title:'enrollment',isloggedIn:false})
-}
+    res.render('enrollment', { title: 'enrollment', isloggedIn: false });
+};
 
+const enrollmentPost = async (req, res) => {
+    console.log(req.file);
+    const imageBuffer = req.file ? req.file.buffer : null; // Ensure req.file exists before accessing buffer
 
-
-const enrollmentPost= (req, res) => {
-    console.log(req.file)
-    const imageBuffer=req.file.buffer
-
-    /** name used for otp is userInput
-     * because of css applied on it
-     */
-
-const { first_name, middle_name, last_name, dob, email, phone, street_address, district, state, country, zip, department, programme, userInput } = req.body;
-
-// Check if any field is missing
-if (!first_name || !last_name || !dob || !email || !phone || !street_address || !district || !state || !country || !zip || !department || !programme || !userInput) {
-    return res.redirect('/api/user/enrollment?error=All_fields_are_required!');
-}
+    const { first_name, middle_name, last_name, dob, email, phone,password, street_address, district, state, country, zip, department, programme, userInput } = req.body;
+console.log(password)
+    // Check if any field is missing
+    if (!first_name || !last_name || !dob || !email || !phone || !password || !street_address || !district || !state || !country || !zip || !department || !programme || !userInput) {
+        return res.redirect('/api/user/enrollment?error=All_fields_are_required!');
+    }
 
     // ✅ Validate OTP
-const generatedOtp=req.otp
-if(generatedOtp!==userInput){
-    return res.redirect('/api/user/enrollment?error=Invalid_Otp');
-}
- // ✅ Age validation
- const todayYear = new Date().getFullYear();
- const birthYear = parseInt(dob.split('-')[0], 10);
- const age = todayYear - birthYear;
-   if (age < 18) {
-    return res.redirect('/api/user/enrollment?error=Student_age_should_be_greater_than_18');
-}
- 
+    const generatedOtp = req.otp;
+    if (generatedOtp !== userInput) {
+        return res.redirect('/api/user/enrollment?error=Invalid_Otp');
+    }
 
-    // ✅ INSERT Query
-    const insertQuery = `INSERT INTO students (first_name, middle_name, last_name, dob, email, phone, street_address, district, state, country, zip, department, programme)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-                 const values = [first_name, middle_name, last_name, dob, email, phone, street_address, district, state, country, zip, department, programme];
+    // ✅ Age validation
+    const todayYear = new Date().getFullYear();
+    const birthYear = parseInt(dob.split('-')[0], 10);
+    const age = todayYear - birthYear;
+    if (age < 18) {
+        return res.redirect('/api/user/enrollment?error=Student_age_should_be_greater_than_18');
+    }
 
+    try {
+        // ✅ Establish DB Connection
+        const connection = await connectDB();
 
-
-                 connectDB.query(insertQuery, values, (err, result) => {
-                    if (err) {
-                        console.error('Error inserting data:', err);
-                        return res.redirect('/api/user/enrollment?error=Error_inserting_data');
-                    }
-                    console.log('Student registered successfully:', result.insertId);
-                    res.redirect('/api/user/dashboard');
-                });
-}
+        // ✅ INSERT Query
+        const insertQuery = `
+    INSERT INTO student_details 
+    (firstName, middleName, lastName, dob, email, mobileNumber, address, district, state, country, pincode, department, programme, profileImage, password, registrationStatus) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+`;
 
 
-export default {enrollmentGet,enrollmentPost}
+        const registrationStatus=1
+        const values = [first_name, middle_name, last_name, dob, email, phone, street_address, district, state, country, zip, department, programme, imageBuffer,password,registrationStatus];
+
+        // ✅ Execute Query
+        const [result] = await connection.execute(insertQuery, values);
+
+        console.log('✅ Student registered successfully:', result.insertId);
+        await connection.end(); // ✅ Close connection
+        const payload={
+            name:first_name+last_name,
+            email:email,
+            phone:phone,
+            id:result.insertId
+        }
+        const token=jwt.sign(payload,SECRET_KEY)
+        res.cookie('smsShobhitUniversity',token)
+
+        return res.redirect('/api/user/dashboard');
+    } catch (error) {
+        console.error('❌ Error inserting data:', error.message,error);
+        return res.redirect('/api/user/enrollment?error=Error_inserting_data');
+    }
+};
+
+export default { enrollmentGet, enrollmentPost };

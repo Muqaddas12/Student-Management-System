@@ -4,14 +4,18 @@
     <div class="welcome-text">Thank you for registering! Fill your Addmission form to secure your seat.</div>
     
     <div class="student-card">
-        <img src="https://via.placeholder.com/80" alt="Student Photo" class="student-photo">
-        <div class="student-name">John Doe</div>
-        <div class="student-info">Roll No: 101 | B.Sc. Computer Science</div>
+        <img src="data:image/jpeg;base64,<%-locals.profileImage %>" alt="Student Photo" class="student-photo">
+        <div class="student-name"><%-locals.studentDetails.firstName %> <%-locals.studentDetails.lastName %></div>
+        <div class="student-info">Department : <%-locals.studentDetails.department %></div>
+        <div class="student-info">Programme: <%-locals.studentDetails.programme %></div>
+        <div class="student-info"> email: <%-locals.studentDetails.email %></div>
+        <div class="student-info"> MobileNumber: <%-locals.studentDetails.mobileNumber %></div>
+
     </div>
 
     <div class="actions">
         <button class="action-btn"><a class="action-route" href="/api/user/addmissionForm">Fill Addmission Form</a></button>
-        <button class="action-btn">Upload Documents</button>
+        <button class="action-btn"><a class="action-route" href="/api/user/uploadDocuments">Upload Documents</a></button>
     </div>
 
     <div class="college-info">

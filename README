@@ -6,60 +6,62 @@ CREATE TABLE student_details (
     religion VARCHAR(50),
     state VARCHAR(50),
     district VARCHAR(50),
-    
+    country VARCHAR(50),
     -- Academic Details
     department VARCHAR(100),
     programme VARCHAR(100),
-    batch_year YEAR,
-    admission_type VARCHAR(50),
+    batchYear varchar(6),
+    admissionType VARCHAR(50),
    
     
     -- Facilities
-    hostel_required ENUM('Yes', 'No'),
-    transportation_required ENUM('Yes', 'No'),
+    hostelRequired varchar(6),
+    transportationRequired varchar(6),
     
     -- Identification
-    photo longblob,
-    admission_no VARCHAR(50) UNIQUE,
-    enrollment_no VARCHAR(50) UNIQUE,
-    roll_no VARCHAR(50) UNIQUE,
+    profileImage longblob,
+    admissionNumber VARCHAR(50) UNIQUE,
+    enrollmentNumber VARCHAR(50) UNIQUE,
+    rollNumber VARCHAR(50) UNIQUE,
     
     -- Student Information
     gender VARCHAR(10),
-    first_name VARCHAR(50),
-    middle_name VARCHAR(50),
-    last_name VARCHAR(50),
+    firstName VARCHAR(50),
+    middleName VARCHAR(50),
+    lastName VARCHAR(50),
     email VARCHAR(100) UNIQUE,
-    mobile_number VARCHAR(15) UNIQUE,
-    date_of_birth DATE,
-    aadhar_no VARCHAR(20) UNIQUE,
-    address_1 TEXT,
-    pin_code VARCHAR(10),
+    mobileNumber VARCHAR(15) UNIQUE,
+    dob varchar(15),
+    aadharNumber VARCHAR(20) UNIQUE,
+    address TEXT,
+    pincode VARCHAR(10),
     
     -- Parent Details
-    father_name VARCHAR(100),
-    father_occupation VARCHAR(100),
-    father_mobile VARCHAR(15),
-    mother_name VARCHAR(100),
+    fatherName VARCHAR(100),
+    fatherOccupation VARCHAR(100),
+    gurdianMobileNumber VARCHAR(15),
+    motherName VARCHAR(100),
     
     -- Education Details
-    twelfth_stream VARCHAR(50),
+    twelfthStream VARCHAR(50),
  
     
     -- 10th Details
-    tenth_marks_grade VARCHAR(10),
-    tenth_passing_year YEAR,
-    tenth_board VARCHAR(100),
+    tenthGrade VARCHAR(10),
+    tenthPassingYear varchar(6),
+    tenthBoard VARCHAR(100),
     
     -- 12th Details
-    twelfth_marks_grade VARCHAR(10),
-    twelfth_passing_year YEAR,
-    twelfth_board VARCHAR(100),
+    twelfthGrade VARCHAR(10),
+    twelfthPassingYear varchar(6),
+    twelfthBoard VARCHAR(100),
     
     -- Graduation Details
-    graduation_marks_grade VARCHAR(10),
-    graduation_passing_year YEAR,
-    graduation_university VARCHAR(100),
+    graduationGrade VARCHAR(10),
+    graduationPassingYear varchar(6),
+    graduationUniversity VARCHAR(100),
     
-    registration_status bool
+    registrationStatus bool,
+    password varchar(20),
+    isAddmissionFormFilled boolean default false
 );
