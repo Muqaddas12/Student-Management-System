@@ -1,4 +1,4 @@
-import connectDB from "../Database.js";
+import connectDB from "../../Database.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 

@@ -1,12 +1,17 @@
 
 
 form {
-    width: 70%;
-   margin-left: 22%;
+    width: 70%;  
+    max-height: 90vh; 
+    margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+
+    overflow: auto; 
+    background: #f9f9f9;
 }
 label {
     font-weight: bold;

@@ -1,0 +1,227 @@
+<% if(locals.addmissionStatus){ %>
+    <div class="subjects-container" id="classroom-container">
+        <fieldset>
+            <legend>📚 <strong>Classroom</strong></legend>
+            <div class="subject">
+                <h3 id="1">Database Management Systems (DBMS)</h3>
+                <p><strong>Code:</strong> CS301</p>
+                <p><strong>Instructor:</strong> Dr. Sharma</p>
+                <p class="grade"><strong>Grade:</strong> A</p>
+            </div>
+            
+            <div class="subject">
+                <h3 id="2">Programming Languages</h3>
+                <p><strong>Code:</strong> CS302</p>
+                <p><strong>Instructor:</strong> Prof. Verma</p>
+                <p class="grade"><strong>Grade:</strong> B+</p>
+            </div>
+    
+            <div class="subject">
+                <h3 id="3">Compiler Design</h3>
+                <p><strong>Code:</strong> CS303</p>
+                <p><strong>Instructor:</strong> Dr. Mehta</p>
+                <p class="grade"><strong>Grade:</strong> A-</p>
+            </div>
+           
+        </fieldset>
+    </div>
+    
+    <style>
+        /* Container Styling */
+        .subjects-container {
+    
+         
+           
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            flex-grow: 1;
+            overflow: auto;
+            display: flex;
+    
+            justify-content: center;
+        }
+    
+        /* Fieldset Styling */
+        fieldset {
+            border: 2px solid #5e46b4;
+        border-radius: 12px;
+        padding: 20px;
+        background: #f9f9ff;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        }
+    
+        /* Legend Styling */
+        legend {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #5e46b4;
+            padding: 5px 15px;
+            background: #e6e1ff;
+            border-radius: 8px;
+            text-align: center;
+        }
+    
+        /* Subject Card Styling */
+        .subject {
+            border: 2px solid #5e46b4;
+            border-radius: 12px;
+            padding: 15px;
+            background: #f4f4f4;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+    
+        /* Hover Effect */
+        .subject:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    
+        /* Title Styling */
+        h3 {
+            margin: 0;
+            color: #5e46b4;
+            font-size: 1.2rem;
+        }
+    
+        /* Paragraph Styling */
+        p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+    
+        /* Grade Highlight */
+        .grade {
+            font-weight: bold;
+            color: #d9534f;
+        }
+    </style>
+    
+    
+    
+    
+    <script>
+    const subjects = document.querySelectorAll('.subject');
+    
+    subjects.forEach(subject => {
+        const subjectTitle = subject.querySelector('h3'); // Select the h3 inside each subject
+        subject.addEventListener('click', () => {
+            alert('Subject ID: ' + subjectTitle.id); // Display h3's ID
+            const subjectDetails=document.getElementById('classroom-container')
+        subjectDetails.innerHTML=`
+        <style>
+        
+    
+            .tabs-container {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                background: white;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+                max-width: 800px;
+                margin: auto;
+            }
+    
+            .tab {
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+                color: #666;
+                border-bottom: 3px solid transparent;
+                transition: 0.3s;
+            }
+    
+            .tab.active {
+                color: #5e46b4;
+                border-bottom: 3px solid #5e46b4;
+            }
+    
+            .content-container {
+              
+                padding: 20px;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+                max-width: 800px;
+                margin: auto;
+                margin-top: 20px;
+            }
+        </style>
+    
+    <div class="classroom-container" style="width: 100%; margin-top: 20px;">
+        
+        <div class="tabs-container">
+            <div class="tab active" onclick="changeTab('courseWork', this)">Course Work</div>
+            <div class="tab" onclick="changeTab('resources', this)">Resources</div>
+            <div class="tab" onclick="changeTab('quizzes', this)">Quizzes</div>
+            <div class="tab" onclick="changeTab('assignments', this)">Assignments</div>
+            <div class="tab" onclick="changeTab('assessmentResults', this)">Assessment Results</div>
+        </div>
+    
+        <div class="content-container" id="content">
+            <h2>Course Work</h2>
+            <p>Details about the course materials and syllabus.</p>
+        </div>
+    
+       
+    
+    
+    </div>`
+    
+    
+        });
+       
+    });
+    
+    
+    </script>
+    
+    
+    
+    <script>
+        function changeTab(tabName, element) {
+            // Tab content mapping
+            const tabContent = {
+                courseWork: "<h2>Course Work</h2><p>Details about the course materials and syllabus.</p>",
+                resources: "<h2>Resources</h2><p>Important reference books, notes, and links.</p>",
+                quizzes: "<h2>Quizzes</h2><p>Upcoming quizzes and past quiz results.</p>",
+                assignments: "<h2>Assignments</h2><p>Current assignments, deadlines, and submissions.</p>",
+                assessmentResults: "<h2>Assessment Results</h2><p>View your grades and performance reports.</p>"
+            };
+    
+            // Update content
+            document.getElementById("content").innerHTML = tabContent[tabName];
+    
+            // Update active tab styling
+            document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
+            element.classList.add("active");
+        }
+    </script>
+
+    <% }else{ %>
+        <style>
+            .notice {
+                width: 80%;
+                margin: 20px auto;
+                padding: 15px;
+                background-color: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+                border-radius: 5px;
+                text-align: center;
+                font-family: Arial, sans-serif;
+            }
+        </style>
+  <div class="notice">
+    <strong>Notice:</strong> This service will be available for you after admission confirmation.
+</div>
+        <% } %>

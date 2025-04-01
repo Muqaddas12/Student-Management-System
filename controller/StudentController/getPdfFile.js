@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import connectDB from '../Database.js'
+import connectDB from '../../Database.js'
 const SECRET_KEY=process.env.JWT_SECRET
 const getPdfFile=async (req,res) => {
     

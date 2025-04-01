@@ -1,4 +1,4 @@
-import sendEmail from "../src/services/EmailOtpRegistration.js";
+import sendEmail from '../../src/services/EmailOtpRegistration.js';
 import otpGenerator from "otp-generator";
 import jwt from 'jsonwebtoken'
 const SECRET_KEY = process.env.JWT_SECRET

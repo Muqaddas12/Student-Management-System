@@ -1,4 +1,4 @@
-import connectDB from "../Database.js";
+import connectDB from "../../Database.js";
 import jwt from 'jsonwebtoken'
 const SECRET_KEY=process.env.JWT_SECRET
 const dashboardGET = async (req, res) => {

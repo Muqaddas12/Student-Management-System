@@ -29,6 +29,14 @@
         <div id="msg"></div>
         <form class="login-form" action="/api/user/login" method="post">
             <div class="container-title">Login</div>
+            <div style="display: flex; flex-direction: row;">
+                <input type="radio" id="student" name="role" value="student">
+                <label for="student" style="margin-right: 20px;">Student</label>
+            
+                <input type="radio" id="admin" name="role" value="admin">
+                <label for="admin">Admin</label>
+            </div>
+            
             <div class="form-input">
                 <input type="text" name="username" id="input-username" placeholder="Username/Email" required>
                 <input type="password" name="password" id="input-pass" placeholder="Password" required>

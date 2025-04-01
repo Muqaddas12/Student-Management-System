@@ -1,15 +1,16 @@
 import express from 'express'
 import multer from 'multer';
-import EmailOtpRegistration from '../../controller/EmailOtpRegistration.js';
-import connectDB from '../../Database.js'
-import initialRegistration from '../../controller/enrollment.js'
-import verifyOtp from '../../src/services/VerifyOtp.js';
-import dashboardGET from '../../controller/dashboard.js';
-import addmissionForm from '../../controller/addmissionForm.js';
-import uploadDocuments from '../../controller/uploadDocuments.js';
-import login from '../../controller/login.js';
-import profile from '../../controller/profile.js';
-import getPdfFile from '../../controller/getPdfFile.js';
+import EmailOtpRegistration from '../../src/services/EmailOtpRegistration.js'
+import connectDB from '../../Database.js';
+import initialRegistration from '../../controller/StudentController/enrollment.js';
+import verifyOtp from '../../src/services/VerifyOtp.js'
+import dashboardGET from '../../controller/StudentController/dashboard.js';
+import addmissionForm from '../../controller/StudentController/addmissionForm.js';
+import uploadDocuments from '../../controller/StudentController/uploadDocuments.js';
+import login from '../../controller/StudentController/login.js';
+import profile from '../../controller/StudentController/profile.js';
+import getPdfFile from '../../controller/StudentController/getPdfFile.js';
+import classroomGET from '../../controller/StudentController/classroom.js';
 const storage=multer.memoryStorage()
 const upload=multer({storage:storage})
 const router = express.Router();
@@ -23,9 +24,7 @@ router.post('/addmissionForm',addmissionForm.addmissionFormPOST)
 router.get('/uploadDocuments',uploadDocuments.uploadDocumentsGet)
 router.post('/uploadDocuments',upload.single('pdfFile'),uploadDocuments.uploadDocumentsPost)
 router.get('/getPdf',getPdfFile)
-router.get('/attendance',(req,res)=>{
-    res.render('attendance')
-})
+router.get('/classroom',classroomGET)
 router.get('/profile',profile)
 
 router.get('/academicCalendar',(req,res)=>{

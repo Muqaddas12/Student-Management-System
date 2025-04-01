@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import userRoutesR from './router/userRoutes/studentsRoutes.js';
 import cookieParser from 'cookie-parser';
+import adminRoute from './router/adminRoutes/adminRoutes.js'; 
 
 const sms = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +26,7 @@ sms.use(express.static(path.join(__dirname, 'public')));
 
 // Register user routes
 sms.use('/api/user', userRoutesR);
+sms.use('/api/admin',adminRoute)
 
 // Sample route to render an EJS view
 sms.get('/', (req, res) => {

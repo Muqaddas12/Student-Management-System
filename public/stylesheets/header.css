@@ -5,17 +5,11 @@
     background-color: #E74C3C; 
     padding: 10px 20px;
     color: white;
-    position: fixed;  
-    top: 0;           
-    left: 0;
-    width: 100%;
-    z-index: 1000;   
+    width: 100%; 
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
 }
 
-body {
-    padding-top: 52px; 
-}
+
 
 .logo {
     display: flex;

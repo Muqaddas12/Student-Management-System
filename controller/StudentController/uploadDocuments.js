@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 const SECRET_KEY=process.env.JWT_SECRET
-import connectDB from '../Database.js'
+import connectDB from '../../Database.js'
 const uploadDocumentsGet=(req,res)=>{
     res.render('uploadDocuments',{title:'uploadDocuments',isloggedIn: true, })
 }

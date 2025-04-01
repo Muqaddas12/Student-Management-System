@@ -1,4 +1,4 @@
-<div class="container">
+<div class="profile-container">
 
 
     <div class="nav-tabs">
@@ -145,14 +145,10 @@
         document.getElementById('mentor-details').classList.remove('active')
         document.getElementById('student-details').classList.remove('active')
         document.getElementById('upload-documents').classList.remove('active')
-      
-        document.getElementById('changeable-container').innerHTML=`
+      '<%if(user.addmissionStatus){%>'
+      document.getElementById('changeable-container').innerHTML=`
         <div class="container">
-    <div class="profile-header">
-        <img src="https://via.placeholder.com/100" alt="Profile Picture" class="profile-image">
-        <div class="profile-name">RACHANA</div>
-        <div class="profile-year">2nd Year Student</div>
-    </div>
+  
 
    
     <!-- Tabs -->
@@ -218,6 +214,25 @@
         </tr>
     </table>
 </div>`
+'<%}else{%>'
+document.getElementById('changeable-container').innerHTML=`<style>
+            .notice {
+                width: 80%;
+                margin: 20px auto;
+                padding: 15px;
+                background-color: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+                border-radius: 5px;
+                text-align: center;
+                font-family: Arial, sans-serif;
+            }
+        </style>
+  <div class="notice">
+    <strong>Notice:</strong> This service will be available for you after addmission conformation.
+</div>`
+'<%}%>'
+
 if (!document.querySelector('link[href="/stylesheets/attendance.css"]')) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
@@ -231,7 +246,7 @@ attendance.classList.add("active");
 </script>
 
 
-
+<!-- student details -->
 <script>
     const studentDetails=document.getElementById('student-details')
     studentDetails.addEventListener('click',()=>{
@@ -321,13 +336,15 @@ studentDetails.classList.add("active");
     })
 </script>
 
+<!-- upload documents  -->
+
 <script>
 const uploadDocuments=document.getElementById('upload-documents')
 uploadDocuments.addEventListener('click',()=>{
     document.getElementById('mentor-details').classList.remove('active')
         document.getElementById('attendance').classList.remove('active')
         document.getElementById('student-details').classList.remove('active')
-
+        '<% if(user.documentStatus){%>'
         fetch('http://localhost:3000/api/user/getPdf').then(response=>response.json())
         .then(data=>{
             const pdfUrl = `data:application/pdf;base64,${data.pdf}`;
@@ -339,10 +356,35 @@ uploadDocuments.addEventListener('click',()=>{
             alert('service not available ')
         })
 
-        document.getElementById('changeable-container').innerHTML=`<div class="pdf-container">
+        document.getElementById('changeable-container').innerHTML=`
+       
+            <div class="pdf-container">
    <iframe id="pdfViewer"  width="100%" height="500px"></iframe>
 </div>
+
 `
+'<% } else {%>'
+    document.getElementById('changeable-container').innerHTML=`<style>
+            .notice {
+                width: 80%;
+                margin: 20px auto;
+                padding: 15px;
+                background-color: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+                border-radius: 5px;
+                text-align: center;
+                font-family: Arial, sans-serif;
+            }
+        </style>
+  <div class="notice">
+    <strong>Notice:</strong> This service will be available for you after documents upload.
+</div>`
+
+    '<%}%>'
+
+
+
 uploadDocuments.classList.add('active')
 
 
