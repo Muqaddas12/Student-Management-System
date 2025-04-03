@@ -15,7 +15,7 @@ const enrollmentPost = async (req, res) => {
     const imageBuffer = req.file ? req.file.buffer : null; // Ensure req.file exists before accessing buffer
 
     const { first_name, middle_name, last_name, dob, email, phone,password, street_address, district, state, country, zip, department, programme, userInput } = req.body;
-console.log(password)
+console.log(req.body)
     // Check if any field is missing
     if (!first_name || !last_name || !dob || !email || !phone || !password || !street_address || !district || !state || !country || !zip || !department || !programme || !userInput) {
         return res.redirect('/api/user/enrollment?error=All_fields_are_required!');

@@ -1,8 +1,12 @@
 
 <div class="dashboard">
     <div class="welcome-title">Welcome to Your Dashboard</div>
-    <div class="welcome-text">Thank you for registering! Fill your Addmission form to secure your seat.</div>
+    <% if(!studentDetails.isAddmissionFormFilled) {%>
+        <div class="welcome-text">Thank you for registering! Fill your Addmission form to secure your seat.</div>
     
+        <%}else if(!studentDetails.documentStatus){%>
+            <div class="welcome-text">you have not uploaded the documents please upload documents!!!</div>
+   <%}%>
     <div class="student-card">
         <img src="data:image/jpeg;base64,<%-locals.profileImage %>" alt="Student Photo" class="student-photo">
         <div class="student-name"><%-locals.studentDetails.firstName %> <%-locals.studentDetails.lastName %></div>
@@ -14,8 +18,13 @@
     </div>
 
     <div class="actions">
+     <% if(!studentDetails.isAddmissionFormFilled) {%>
         <button class="action-btn"><a class="action-route" href="/api/user/addmissionForm">Fill Addmission Form</a></button>
+        <%}%>
+     <% if(!studentDetails.documentStatus) {%>
         <button class="action-btn"><a class="action-route" href="/api/user/uploadDocuments">Upload Documents</a></button>
+        <%}%>
+      
     </div>
 
     <div class="college-info">

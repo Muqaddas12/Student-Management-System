@@ -20,6 +20,7 @@ function sendOtp(e){
    const sbtn=document.getElementById('otpSendButton')
    sbtn.disabled=true;
    sbtn.innerText='sending.......'
+
     fetch("http://localhost:3000/api/user/sendOtp", {
         method: "POST",
         headers: {

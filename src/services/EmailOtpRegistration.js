@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config(); // Load environment variables from .env file
 
 const transport = nodemailer.createTransport({
-    service: 'gmail',
+    service: 'smtp.ethereal.email',
     auth: {
         user: 'faltufaltu929@gmail.com',
         pass: process.env.APP_PASSWORD, // Make sure APP_PASSWORD is set in .env

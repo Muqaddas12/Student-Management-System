@@ -10,10 +10,51 @@ const login = async (req, res) => {
     try {
         console.log("Login Attempt:", req.body);
 
-        const { username, password } = req.body;
+        const { role,username, password } = req.body;
 
         if (!username || !password) {
             return res.redirect('/?error=All_Fields_Required');
+        }
+        if(role==='admin'){
+            const db = await connectDB();
+
+            // 🔍 Query to check if user exists
+            const query = "SELECT * FROM instructors WHERE email = ? OR phone = ?";
+            const [results] = await db.execute(query, [username, username]);
+    console.log(results)
+            if (results.length === 0) {
+                return res.redirect('/?error=Invalid_email_or_password');
+            }
+    
+       
+    
+            const user = results[0];
+    
+            // 🔑 Password check (Plain text)
+            if (user.password !== password) {
+                return res.redirect('/?error=Incorrect_Password_Or_Email');
+            }
+    console.log(user)
+            // 🔥 Generate JWT Token
+            const payload = {
+                name: `${user.first_name} ${user.last_name}`,
+                email: user.email,
+                phone: user.phone,
+                id: user.instructor_id,
+                department:user.department
+            };
+    
+            const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "100h" });
+    
+           
+            res.cookie("smsShobhitUniversity", token, { httpOnly: true });
+    
+            console.log("JWT Generated:", token);
+    
+            // ✅ Redirect to Dashboard
+           return res.redirect('/api/admin/manageStudents');
+    
+  
         }
 
         

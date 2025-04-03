@@ -3,11 +3,13 @@
     margin: 0;
     padding: 0;
 }
+body{
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .main-container {
     display: flex;
     height: 79vh;
-    background: linear-gradient(135deg, #5e46b4, #6a89cc);
-    color: #fff;
+   background-color: #efefef;
     flex-direction: row;
    
 }

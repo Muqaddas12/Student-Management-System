@@ -1,11 +1,17 @@
    
     <form method="post" action="/api/user/addmissionForm">
         <div class="form-status">
-          <%if(locals.formStatus){ %>
-            <h3>your Application has been submitted. Please upload required documents <a href="/api/user/uploadDocuments" > click here</a></h3>
-            <h4>Status : Pending</h4>
+          <%if(studentDetails.isAddmissionFormFilled){ %>
+            <% if(!studentDetails.documentStatus){ %>
+                <h3>your Application has been submitted. Please upload required documents <a href="/api/user/uploadDocuments" > click here</a></h3>
+                <% } %>
+            <h4 style="display: inline; ">Status : <% if(studentDetails.addmissionStatus){ %>
+               <h4 style="color: green; display: inline;"> Your admission is confirmed</h4>
+            <% }else{ %>
+                Pending
+            </h4>
 
-            <% } %>
+            <% }} %>
 
         </div>
         <h2>Personal Details</h2>

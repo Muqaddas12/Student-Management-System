@@ -1,6 +1,6 @@
 /* Footer Styling */
 .footer {
-    background-color: #222;
+    background-color: #000000;
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -22,7 +22,7 @@
 }
 
 .footer-links a {
-    color: #6a89cc;
+    color: rgb(221, 221, 221);
     text-decoration: none;
     font-size: 14px;
     transition: 0.3s;

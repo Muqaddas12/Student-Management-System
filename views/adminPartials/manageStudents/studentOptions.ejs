@@ -223,90 +223,149 @@ displayStudents.addEventListener('click',()=>{
 `
 
 })
-function viewStudent(studentId){
-   
+function viewStudent(studentId) {
     fetch(`/api/admin/getStudent/${studentId}`)
         .then(response => response.json())
         .then(student => {
             if (student) {
-        console.log(student)
-      
-           
-                document.getElementById('data-container').innerHTML = `<div class="profile-container" style="height:70vh;">
+                const addmissionStatus=student.addmissionStatus
+        let data;
+        if(addmissionStatus){
+            data=` <fieldset>
+                            <legend>Status</legend>
+                  <h1>Addmission confirmed</h1>
 
+                        
+                            </fieldset>`
+        }else{
+            data=`<fieldset>
+                            <legend>Status</legend>
+                       <form action="/api/admin/updateAddmissionStatus" method="POST" style="all:unset;">
+                        <input type="hidden" name="studentId" value="${student.id}"/>
+                        <input type="submit" name="addmissionStatus" value="Approve" 
+       style="background-color: green; color: white; border: none; padding: 8px 12px; margin-right: 10px; cursor: pointer;width: 40%;
+    margin-bottom: 10px;"/>
 
+<input type="submit" name="addmissionStatus" value="Reject" 
+       style="background-color: red; color: white; border: none; padding: 8px 12px; cursor: pointer;width: 40%;
+    margin-bottom: 10px;"/>
+    </form>
 
+                        
+                            </fieldset>`
+          
+        }
+                
+                document.getElementById('data-container').innerHTML = `
+                <div class="profile-container" style="height:70vh;">
+                    <div id="changeable-container">
 
+                        <fieldset>
+                            <legend>Basic Information</legend>
+                            <div class="profile">
+                                <img src="data:image/jpeg;base64,${student.profileImage}" alt="Profile Picture">
+                            </div>
+                            <div class="details">
+                                <table>
+                                    <tr><td>Full Name</td><td>${student.firstName} ${student.middleName} ${student.lastName}</td></tr>
+                                    <tr><td>Email</td><td>${student.email}</td></tr>
+                                    <tr><td>Phone</td><td>${student.mobileNumber}</td></tr>
+                                    <tr><td>Date of Birth</td><td>${student.dob}</td></tr>
+                                    <tr><td>Gender</td><td>${student.gender}</td></tr>
+                                    <tr><td>Religion</td><td>${student.religion}</td></tr>
+                                    <tr><td>Category</td><td>${student.category}</td></tr>
+                                    <tr><td>Aadhar Number</td><td>${student.aadharNumber}</td></tr>
+                                    <tr><td>Address</td><td>${student.address}, ${student.district}, ${student.state}, ${student.country} - ${student.pincode}</td></tr>
+                                </table>
+                            </div>
+                        </fieldset>
 
-   <div id="changeable-container">
-    <div class="section-title">Student Details</div>
-    <div class="profile">
-        <img src="data:image/jpeg;base64,${student.profileImage }" alt="Profile Picture">
+                        <fieldset>
+                            <legend>Parent Details</legend>
+                            <div class="details">
+                                <table>
+                                    <tr><td>Father's Name</td><td>${student.fatherName}</td></tr>
+                                    <tr><td>Father's Occupation</td><td>${student.fatherOccupation}</td></tr>
+                                    <tr><td>Mother's Name</td><td>${student.motherName}</td></tr>
+                                    <tr><td>Guardian's Mobile</td><td>${student.gurdianMobileNumber}</td></tr>
+                                </table>
+                            </div>
+                        </fieldset>
 
-        <div class="profile-info">
-            <h2>${student.firstName} ${student.lastName}</h2>
-        </div>
-    </div>
+                        <fieldset>
+                            <legend>Academic Details</legend>
+                            <div class="details">
+                                <table>
+                                    <tr><td>Programme</td><td>${student.programme}</td></tr>
+                                    <tr><td>Department</td><td>${student.department}</td></tr>
+                                    <tr><td>Batch Year</td><td>${student.batchYear}</td></tr>
+                                    <tr><td>Admission Type</td><td>${student.admissionType}</td></tr>
+                                    <tr><td>Current Year</td><td>${Math.ceil(student.semester / 2)}</td></tr>
+                                    <tr><td>Current Semester</td><td>${student.semester}</td></tr>
+                                    <tr><td>Session</td><td>${student.session}</td></tr>
+                                    <tr><td>Admission Date</td><td>${student.addmissionDate}</td></tr>
+                                </table>
+                            </div>
+                        </fieldset>
 
-    <div class="details">
-        <table>
-            <tr>
-                <td>Registration ID</td>
-                <td>${student.admissionNumber}</td>
-            </tr>
-            <tr>
-                <td>Application Number</td>
-                <td>${student.enrollmentNumber}</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>${student.email}</td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td>${student.mobileNumber}</td>
-            </tr>
-            <tr>
-                <td>Programme</td>
-                <td>${student.programme}</td>
-            </tr>
-            <tr>
-                <td>Department</td>
-                <td>${student.department}</td>
-            </tr>
-            <tr>
-                <td>Batch Year</td>
-                <td>2023</td>
-            </tr>
-            <tr>
-                <td>Academic Status</td>
-                <td>${student.admissionType}</td>
-            </tr>
-            <tr>
-                <td>Current Year</td>
-                <td>2nd Year</td>
-            </tr>
-            <tr>
-                <td>Current Term</td>
-                <td>4th Semester</td>
-            </tr>
-            <tr>
-                <td>Quota</td>
-                <td>General</td>
-            </tr>
-            <tr>
-                <td>Admission Type</td>
-                <td>${student.admissionType}</td>
-            </tr>
-            <tr>
-                <td>Section</td>
-                <td>A</td>
-            </tr>
-        </table>
-    </div>
-   </div>
-</div>
+                        <fieldset>
+                            <legend>School & Graduation</legend>
+                            <div class="details">
+                                <table>
+                                    <tr><td>10th Grade</td><td>${student.tenthGrade}</td></tr>
+                                    <tr><td>10th Passing Year</td><td>${student.tenthPassingYear}</td></tr>
+                                    <tr><td>10th Board</td><td>${student.tenthBoard}</td></tr>
+                                    <tr><td>12th Stream</td><td>${student.twelfthStream}</td></tr>
+                                    <tr><td>12th Grade</td><td>${student.twelfthGrade}</td></tr>
+                                    <tr><td>12th Passing Year</td><td>${student.twelfthPassingYear}</td></tr>
+                                    <tr><td>12th Board</td><td>${student.twelfthBoard}</td></tr>
+                                    <tr><td>Graduation Grade</td><td>${student.graduationGrade}</td></tr>
+                                    <tr><td>Graduation Passing Year</td><td>${student.graduationPassingYear}</td></tr>
+                                    <tr><td>Graduation University</td><td>${student.graduationUniversity}</td></tr>
+                                </table>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Additional Information</legend>
+                            <div class="details">
+                                <table>
+                                    <tr><td>Quota</td><td>${student.category}</td></tr>
+                                    <tr><td>Admission Number</td><td>${student.admissionNumber}</td></tr>
+                                    <tr><td>Enrollment Number</td><td>${student.enrollmentNumber}</td></tr>
+                                    <tr><td>Roll Number</td><td>${student.rollNumber}</td></tr>
+                                    <tr><td>Section</td><td>${student.section || 'N/A'}</td></tr>
+                                    <tr><td>Hostel Required</td><td>${student.hostelRequired}</td></tr>
+                                    <tr><td>Transport Required</td><td>${student.transportationRequired}</td></tr>
+                                </table>
+                            </div>
+                        </fieldset>
+                   ${data}
+                         
+                    </div>
+                </div>
+
+                <style>
+                    legend {
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                        color: #5e46b4;
+                        padding: 5px 10px;
+                        border-radius: 8px;
+                        background-color: #f0f0f0;
+                        border: 2px solid #5e46b4;
+                    }
+                    fieldset {
+                        border: 2px solid #5e46b4;
+                        border-radius: 10px;
+                        padding: 15px;
+                        margin-bottom: 20px;
+                        background-color: #f9f9f9;
+                        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+                    }
+                </style>
                 `;
+           
             } else {
                 alert("Student not found!");
             }

@@ -63,7 +63,7 @@
 
 
 <select name="district" required>
-    <option value="" <%= locals.studentDetails.district === "" ? "selected" : "" %>>Select a District</option>
+   
     <option value="Nicobar" <%= locals.studentDetails.district === "Nicobar" ? "selected" : "" %>>Nicobar</option>
     <option value="North and Middle Andaman" <%= locals.studentDetails.district === "North and Middle Andaman" ? "selected" : "" %>>North and Middle Andaman</option>
     <option value="South Andaman" <%= locals.studentDetails.district === "South Andaman" ? "selected" : "" %>>South Andaman</option>
@@ -196,7 +196,7 @@
         }
 
         input {
-            width: 100%;
+            /* width: 100%; */
             padding: 5px;
             margin: 3px 0;
             border: 1px solid #ccc;
@@ -209,10 +209,10 @@
             border-radius: 8px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             margin-top: 15px;
-        }
+        /* }
     </style>
-</head>
-<body>
+</head> */
+/* <body> */
 
 
 
@@ -220,3 +220,59 @@
 </html>
 
 <form ></form>
+
+
+
+
+Your script dynamically loads and displays course resources when a subject is clicked. However, I see a few potential improvements and issues:
+
+Possible Issues & Improvements:
+
+1. Fetching Course Code Issue:
+
+You're trying to get courseCode from document.getElementById('course-code').innerText. Ensure this element exists and contains the correct value before making the request.
+
+
+
+2. Handling Multiple Resources:
+
+Right now, your resource object assumes a single file (resource.fileName). If the API returns multiple resources, you should iterate over them.
+
+
+
+3. Scoped Inline Styles:
+
+The inline <style> tag inside innerHTML will not apply correctly in all cases. Move the styles to an external CSS file or ensure they're inserted properly.
+
+
+
+4. Clicking Another Subject Overwrites Content:
+
+Consider clearing previous resources before inserting new ones or appending them dynamically instead.
+
+
+
+
+
+---
+
+Suggested Fixes & Enhancements:
+
+Handle Multiple Resources
+
+Modify how resources are displayed:
+
+
+/*  */
+Fix courseCode Retrieval
+
+Make sure courseCode is correctly retrieved:
+
+const courseCodeElement = document.getElementById('course-code');
+if (!courseCodeElement) {
+    console.error("Element with ID 'course-code' not found!");
+    return;
+}
+const courseCode = courseCodeElement.innerText.trim();
+
+Would you like help refining the viewPdf and downloadPdf functions too?
