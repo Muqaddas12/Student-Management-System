@@ -1126,74 +1126,74 @@ function viewStudent(studentId) {
         </select>
     </div>
     
-    <div class="form-group">
-        <label>First Name *</label>
-        <input type="text" name="firstName"  >
-    </div>
-    
-    <div class="form-group">
-        <label>Middle Name</label>
-        <input type="text" name="middleName"  >
-    </div>
-    
-    <div class="form-group">
-        <label>Last Name *</label>
-        <input type="text" name="lastName"  >
-    </div>
+   <div class="form-group">
+    <label>First Name *</label>
+    <input type="text" name="firstName" placeholder="First Name" required oninput="nameValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>Middle Name</label>
+    <input type="text" name="middleName" placeholder="Middle Name" oninput="nameValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>Last Name *</label>
+    <input type="text" name="lastName" placeholder="Last Name" required oninput="nameValidation(this)">
+</div>
+
+
     
     <div class="form-group">
         <label>Email Address *</label>
         <input type="email" name="email"  >
     </div>
     
-    <div class="form-group">
-        <label>Mobile Number *</label>
-        <input type="text" name="mobileNumber"  >
-    </div>
+   <div class="form-group">
+    <label>Mobile Number *</label>
+    <input type="text" name="mobileNumber" placeholder="Mobile Number" required oninput="mobileNumberValidation(this)">
+</div>
     
     <div class="form-group">
         <label>Date of Birth *</label>
         <input type="date" name="dob" >
     </div>
     
-    <div class="form-group">
-        <label>Aadhar No *</label>
-        <input type="text" name="aadharNumber">
-    </div>
-    
+   <div class="form-group">
+    <label>Aadhar No *</label>
+    <input type="text" name="aadharNumber" placeholder="Enter Aadhar Number" required oninput="aadharValidation(this)">
+</div>
+
     <div class="form-group">
         <label>Address 1 *</label>
         <input type="text" name="address">
     </div>
-    
-    <div class="form-group">
-        <label>Pin Code *</label>
-        <input type="text" name="pincode">
-    </div>
+<div class="form-group">
+    <label>Pin Code *</label>
+    <input type="text" name="pincode" placeholder="Enter Pin Code" required oninput="pincodeValidation(this)">
+</div>
     
     <h3>Parent Details</h3>
     
     <div class="form-group">
-        <label>Father's Occupation *</label>
-        <input type="text" name="fatherOccupation">
-    </div>
-    
-    <div class="form-group">
-        <label>Father's Name *</label>
-        <input type="text" name="fatherName">
-    </div>
-    
-    <div class="form-group">
-        <label>Guardian Mobile Number *</label>
-        <input type="text" name="gurdianMobileNumber">
-    </div>
-    
+    <label>Father's Occupation *</label>
+    <input type="text" name="fatherOccupation" placeholder="Father's Occupation" required oninput="occupationValidation(this)">
+</div>
 
-    <div class="form-group">
-        <label>Mother's Name *</label>
-        <input type="text" name="motherName">
-    </div>
-    
+<div class="form-group">
+    <label>Father's Name *</label>
+    <input type="text" name="fatherName" placeholder="Father's Name" required oninput="nameValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>Guardian Mobile Number *</label>
+    <input type="text" name="guardianMobileNumber" placeholder="Guardian Mobile Number" required oninput="mobileNumberValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>Mother's Name *</label>
+    <input type="text" name="motherName" placeholder="Mother's Name" required oninput="nameValidation(this)">
+</div>
+
     <h3>Education Details</h3>
     
     <div class="form-group">
@@ -1212,49 +1212,49 @@ function viewStudent(studentId) {
     </div>
     
     <div class="form-group">
-        <label>10th Marks/Grade *</label>
-        <input type="text" name="tenthGrade">
-    </div>
-    
-    <div class="form-group">
-        <label>10th Passing Year *</label>
-        <input type="text" name="tenthPassingYear">
-    </div>
-    
-    <div class="form-group">
-        <label>10th Board *</label>
-        <input type="text" name="tenthBoard">
-    </div>
-    
-    <div class="form-group">
-        <label>12th Marks/Grade *</label>
-        <input type="text" name="twelfthGrade">
-    </div>
-    
-    <div class="form-group">
-        <label>12th Passing Year *</label>
-        <input type="text" name="twelfthPassingYear">
-    </div>
-    
-    <div class="form-group">
-        <label>12th Board *</label>
-        <input type="text" name="twelfthBoard">
-    </div>
-    
-    <div class="form-group">
-        <label>Graduation Marks/Grade *</label>
-        <input type="text" name="graduationGrade">
-    </div>
-    
-    <div class="form-group">
-        <label>Graduation Passing Year *</label>
-        <input type="text" name="graduationPassingYear">
-    </div>
-    
-    <div class="form-group">
-        <label>Graduation University *</label>
-        <input type="text" name="graduationUniversity">
-    </div>
+    <label>10th Marks/Grade *</label>
+    <input type="text" name="tenthGrade" placeholder="Enter 10th Marks/Grade" required oninput="marksGradeValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>10th Passing Year *</label>
+    <input type="text" name="tenthPassingYear" placeholder="Enter 10th Passing Year" required oninput="yearValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>10th Board *</label>
+    <input type="text" name="tenthBoard" placeholder="Enter 10th Board" required oninput="boardUniversityValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>12th Marks/Grade *</label>
+    <input type="text" name="twelfthGrade" placeholder="Enter 12th Marks/Grade" required oninput="marksGradeValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>12th Passing Year *</label>
+    <input type="text" name="twelfthPassingYear" placeholder="Enter 12th Passing Year" required oninput="yearValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>12th Board *</label>
+    <input type="text" name="twelfthBoard" placeholder="Enter 12th Board" required oninput="boardUniversityValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>Graduation Marks/Grade *</label>
+    <input type="text" name="graduationGrade" placeholder="Enter Graduation Marks/Grade" required oninput="marksGradeValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>Graduation Passing Year *</label>
+    <input type="text" name="graduationPassingYear" placeholder="Enter Graduation Passing Year" required oninput="yearValidation(this)">
+</div>
+
+<div class="form-group">
+    <label>Graduation University *</label>
+    <input type="text" name="graduationUniversity" placeholder="Enter Graduation University" required oninput="boardUniversityValidation(this)">
+</div>
     <div class="form-group">
         <label>Profile Image *</label>
         <input type="file" name="profileImage" required accept="image/*">
@@ -1277,6 +1277,66 @@ function viewStudent(studentId) {
     })
 </script>
 
+<script>
+    function nameValidation(input) {
+        // Remove any non-alphabetic characters (including numbers)
+        input.value = input.value.replace(/[^a-zA-Z ]/g, '');
+    }
+
+    function mobileNumberValidation(input) {
+        // Remove any non-numeric characters
+        input.value = input.value.replace(/[^0-9]/g, '');
+    }
+
+    function aadharValidation(input) {
+        // Remove any non-numeric characters
+        input.value = input.value.replace(/[^0-9]/g, '');
+
+        // Ensure the input doesn't exceed 12 digits
+        if (input.value.length > 12) {
+            input.value = input.value.slice(0, 12); // Limit to 12 digits
+        }
+    }
+    function pincodeValidation(input) {
+        // Remove any non-numeric characters
+        input.value = input.value.replace(/[^0-9]/g, '');
+
+        // Ensure the input doesn't exceed 6 digits
+        if (input.value.length > 11) {
+            input.value = input.value.slice(0, 6); // Limit to 6 digits
+        }
+    }
+     
+
+    // Validation for father's occupation (only alphabetic characters and spaces)
+    function occupationValidation(input) {
+        // Allow only alphabetic characters and spaces
+        input.value = input.value.replace(/[^a-zA-Z ]/g, '');
+    }
+     // Validation for Marks/Grade (Allows letters and numbers)
+     function marksGradeValidation(input) {
+        // Allow only alphanumeric characters (e.g., A, B, 95, etc.)
+        input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
+    }
+
+    // Validation for Year fields (Allows only 4 digits for year)
+    function yearValidation(input) {
+        // Allow only numbers and ensure it has exactly 4 digits
+        input.value = input.value.replace(/[^0-9]/g, '');
+        if (input.value.length > 4) {
+            input.value = input.value.slice(0, 4); // Limit to 4 digits
+        }
+    }
+
+    // Validation for Board/University fields (Only alphabetic characters and spaces allowed)
+    function boardUniversityValidation(input) {
+        // Allow only alphabetic characters and spaces (e.g., "CBSE", "University of XYZ")
+        input.value = input.value.replace(/[^a-zA-Z ]/g, '');
+    }
+
+
+  
+</script>
 
 
 

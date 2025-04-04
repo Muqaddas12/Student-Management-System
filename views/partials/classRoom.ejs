@@ -3,7 +3,7 @@
         <fieldset>
             <legend>📚 <strong>Classroom</strong></legend>
          
-    
+    <input type="text" value="<% locals.semester %> " id="semester">
             <div class="subject">
                 <h3 id="3">Compiler Design</h3>
                 <strong>Code:</strong><p id="course-code">CS115</p>
@@ -13,7 +13,24 @@
            
         </fieldset>
     </div>
+  
     
+
+    <script>
+        const semester=document.getElementById('semester').value
+        window.onload = function() {
+            fetch(`/api/user/getSubjects?semester=${semester}`)
+                .then(response => response.json())
+                .then(subjects => {
+                    console.log(subjects);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        };
+    </script>
+    
+
     <style>
 
 .resource-card {

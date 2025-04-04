@@ -9,18 +9,32 @@
         <fieldset>
             <legend>Student Information</legend>
             <div class="input-group">
-                <input type="text" name="first_name" placeholder="First Name*" required>
-                <input type="text" name="middle_name" placeholder="Middle Name">
-                <input type="text" name="last_name" placeholder="Last Name*" required>
+                <input type="text" name="first_name" placeholder="First Name*" required oninput="inputValidation(this)">
+                <input type="text" name="middle_name" placeholder="Middle Name" oninput="inputValidation(this)">
+                <input type="text" name="last_name" placeholder="Last Name*" required oninput="inputValidation(this)">
             </div>
+            
+            <script>
+                function inputValidation(input) {
+                    // Remove any non-alphabetic characters (including numbers)
+                    input.value = input.value.replace(/[^a-zA-Z ]/g, '');
+                }
+            </script>
+            
+
             <div class="input-group">
                 <input type="date" name="dob" value="2000-02-10" required>
                 <input type="email" name="email" placeholder="Email*" id="email" required>
-                <input type="phone" name="phone" placeholder="Phone*" required>
+                <input type="phone" name="phone" placeholder="Phone*" required oninput="phoneValidation(this)">
                 <input type="phone" name="password" placeholder="Password*" required>
             </div>
         </fieldset>
-
+        <script>
+            function phoneValidation(input) {
+                // Remove any non-numeric characters
+                input.value = input.value.replace(/[^0-9]/g, '');
+            }
+        </script>
         <!-- Address -->
         <fieldset>
             <legend >Address</legend>
@@ -102,7 +116,11 @@
                         <option value="South Salmara-Mankachar">South Salmara-Mankachar</option>
                         <option value="Tinsukia">Tinsukia</option>
                         <option value="Udalguri">Udalguri</option>
-                        <option value="West Karbi Anglong">West Karbi Anglong</option></select>
+                        <option value="West Karbi Anglong">West Karbi Anglong</option>
+                        <option value="saharanpur">Saharanpur</option>
+                        <option value="shamli">shamli</option>
+                        <option value="muzaffarnagar">muzaffarnagar</option>
+                    </select>
                 </div>
         
                 <div class="form-group">
@@ -144,9 +162,7 @@
                         <option value="Delhi">Delhi</option>
                         <option value="Puducherry">Puducherry</option>
                         <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                        <option value="saharanpur">saharanpur</option>
-                        <option value="shamli">shamli</option>
-                        <option value="muzaffarnagar">muzaffarnagar</option>
+                       
                     </select>
                 </div>
                 
@@ -164,9 +180,15 @@
                     <option value="Japan">Japan</option>
                     <option value="China">China</option>
                 </select>
-                <input type="text" name="zip" placeholder="ZIP Code" required>
+                <input type="text" name="zip" placeholder="ZIP Code" required oninput="zipValidation(this)">
             </div>
         </fieldset>
+        <script>
+            function zipValidation(input) {
+                // Remove any non-numeric characters
+                input.value = input.value.replace(/[^0-9]/g, '');
+            }
+        </script>
 
         <!-- Courses -->
         <fieldset>

@@ -82,6 +82,7 @@ const login = async (req, res) => {
             name: `${user.firstName} ${user.lastName}`,
             email: user.email,
             phone: user.mobileNumber,
+            semester:user.semester,
             id: user.id
         };
 

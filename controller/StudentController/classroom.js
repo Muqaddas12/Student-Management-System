@@ -14,7 +14,8 @@ const classroomGET=async (req,res)=>{
         const [results]= await connection.execute(query,[userdata.id])
 console.log('classroom logs',results[0])
 const addmissionStatus=results[0].addmissionStatus
- return res.render('classRoom',{title:'classroom',addmissionStatus})
+const semester=results[0].semester
+ return res.render('classRoom',{title:'classroom',addmissionStatus,semester})
 
     } catch (error) {
         console.log('Error in classroom controller',error)

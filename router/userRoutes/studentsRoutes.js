@@ -16,7 +16,8 @@ const upload=multer({storage:storage})
 const router = express.Router();
 import authentication from '../../middlewares/authentication.js';
 connectDB()
-
+import jwt from 'jsonwebtoken'
+const SECRET_KEY=process.env.JWT_SECRET
 function countAttendanceByCourse(data) {
     const attendanceSummary = {};
   
@@ -127,6 +128,16 @@ router.get('/logout',(req,res)=>{
 return res.redirect('/?error=Login_first')
 })
 
+
+router.get('/getSubjects',authentication,(req,res)=>{
+  const semester=req.query
+  console.log(semester)
+const token=req.cookies.smsShobhitUniversity
+const data=jwt.verify(token,SECRET_KEY)
+console.log('getstudent logs',data)
+
+
+})
 
 
 export default router

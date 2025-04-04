@@ -244,11 +244,11 @@ router.post("/markAttendance",authentication, async (req, res) => {
         const query = `INSERT INTO student_attendance (studentId, rollNumber, programme, semester, course, date, status) VALUES ?`;
         await connection.query(query, [attendanceData]);
 
-        res.status(200).json({ message: "Attendance marked successfully" });
+        res.redirect('/api/admin/markAttendance?success=Attendance_marked_successfully')
 
     } catch (error) {
         console.error("Error marking attendance:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.redirect('/api/admin/markAttendance?success=internal_server_error')
     }
 });
 
