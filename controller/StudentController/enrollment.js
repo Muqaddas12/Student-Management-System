@@ -6,6 +6,7 @@ const SECRET_KEY=process.env.JWT_SECRET
 
 
 const enrollmentGet = (req, res) => {
+
     res.clearCookie("id", { httpOnly: true, secure: true });
     res.render('enrollment', { title: 'enrollment', isloggedIn: false });
 };

@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import sendEmail from '../../src/services/EmailOtpRegistration.js';
 import otpGenerator from "otp-generator";
 import jwt from 'jsonwebtoken'
